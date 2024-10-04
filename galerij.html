@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerij van de Efteling attracties">
+    <title>Galerij - Efteling</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        #player {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="file:///D:/NHA%20Webdesign/Webdesign/Les%209/Toeristische-attractie/geluiden/efteling-1%20(1).svg" alt="Efteling Logo" width="200" height="100">
+        <h1>Efteling Attracties</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="galerij.html">Galerij</a></li>
+                <li><a href="info.html">Informatie</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Galerij</h2>
+            <p>Klik op een attractie om het geluid te horen.</p>
+            <div class="gallery">
+                <img src="images/sprookjesbos.jpg" alt="Sprookjesbos" id="sprookjesbos" width="200" style="cursor: pointer;">
+                <img src="images/python.jpg" alt="Python Achtbaan" id="python" width="200" style="cursor: pointer;">
+                <img src="images/fata_morgana.jpg" alt="Fata Morgana" id="fata_morgana" width="200" style="cursor: pointer;">
+            </div>
+        </section>
+
+        <section>
+            <h3>HTML5 Geluid</h3>
+            <button id="playAudio">Speel Audio</button>
+            <button id="pauseAudio">Pauzeer Audio</button>
+            <div id="player"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Efteling Toeristische Website</p>
+    </footer>
+
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '390',
+                width: '640',
+                videoId: '',
+                playerVars: {
+                    'autoplay': 0,
+                    'controls': 0
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            document.getElementById("playAudio").addEventListener("click", function() {
+                player.playVideo();
+            });
+            document.getElementById("pauseAudio").addEventListener("click", function() {
+                player.pauseVideo();
+            });
+        }
+
+        document.getElementById("sprookjesbos").addEventListener("click", function() {
+            player.loadVideoById('jzgXZsl24yk');
+        });
+
+        document.getElementById("python").addEventListener("click", function() {
+            player.loadVideoById('mJ2KPMK6XwU');
+        });
+
+        document.getElementById("fata_morgana").addEventListener("click", function() {
+            player.loadVideoById('mXdXR82IkvQ');
+        });
+    </script>
+</body>
+</html>
